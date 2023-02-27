@@ -64,9 +64,6 @@ def func2(folder_path):
     df.to_csv(os.path.join(op_path, filename), index=False)
 
 
-def func3(folder_path):
-    states = ['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO',          'CONNECTICUT', 'DELAWARE', 'FLORIDA', 'GEORGIA', 'HAWAII', 'IDAHO',          'ILLINOIS', 'INDIANA', 'IOWA', 'KANSAS', 'KENTUCKY', 'LOUISIANA',          'MAINE', 'MARYLAND', 'MASSACHUSETTS', 'MICHIGAN', 'MINNESOTA',          'MISSISSIPPI', 'MISSOURI', 'MONTANA', 'NEBRASKA', 'NEVADA',          'NEW HAMPSHIRE', 'NEW JERSEY', 'NEW MEXICO', 'NEW YORK',          'NORTH CAROLINA', 'NORTH DAKOTA', 'OHIO', 'OKLAHOMA', 'OREGON',          'PENNSYLVANIA', 'RHODE ISLAND', 'SOUTH CAROLINA', 'SOUTH DAKOTA',          'TENNESSEE', 'TEXAS', 'UTAH', 'VERMONT', 'VIRGINIA', 'WASHINGTON',          'WEST VIRGINIA', 'WISCONSIN', 'WYOMING']
-    print(len(states))
 
 def main():
     folder_path = "./yield"
@@ -75,7 +72,6 @@ def main():
     #cleanCSV(folder_path)
 
     #func(folder_path)
-    func3(folder_path)
 
 if __name__ == "__main__":
     main()
