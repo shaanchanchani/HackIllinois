@@ -2,9 +2,6 @@ import requests
 import json
 import csv
 
-
-
-
 def main():
     token = "gmSzxnzUGARoSLqbKAapUAwRVdnPhApk" # be sure not to share your token publicly
         # Define API endpoint and parameters
@@ -23,12 +20,13 @@ def main():
           "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK",
           "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV",
           "WI", "WY"]
-
+    
+    #
     # Open CSV file for writing
-    with open("monthly_weather.csv", mode="w", newline="") as csv_file:
+    with open("./cdoData/humidity.csv", mode="w", newline="") as csv_file:
         # Create CSV writer object and write header row
         csv_writer = csv.writer(csv_file)
-        header_row = ["state", "year", "month", "temperature", "precipitation", "snowfall", "wind_speed"]
+        header_row = ["state", "year", "month", "precipitation"]
         csv_writer.writerow(header_row)
 
         # Loop through each state and retrieve data for each year and month
@@ -40,7 +38,7 @@ def main():
                 params["enddate"] = f"{year}-12-31"
                 avg_temps = {}  # dictionary to store average temperatures for each month
                 # Retrieve temperature data
-                params["datatypeid"] = "TAVG"
+                params["datatypeid"] = "RHUM"
                 response = requests.get(url, headers={"token": "gmSzxnzUGARoSLqbKAapUAwRVdnPhApk"}, params=params)
                 if response.status_code == 200:
                     data = json.loads(response.text)
@@ -58,6 +56,7 @@ def main():
                             avg_temp = sum(avg_temps[month]) / len(avg_temps[month])
                             csv_writer.writerow([state, year, month, avg_temp, None, None, None])
                     else:
-                        print("No temperature data found for", state, year)
+                        print("No humidity data found for", state, year)
+
 if __name__ == "__main__":
     main()

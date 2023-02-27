@@ -32,17 +32,19 @@ def clean_pr_CSV(folder_path):
             #df["month"] = df["month"].map(month_dict)
 
 
-            
-
             # Write the updated DataFrame back to the CSV file
             df.to_csv(os.path.join(folder_path, filename), index=False)
+
+
+
+
 
 def main():
 
 
-    folder_path = "./opdata2"
+    folder_path = "./pr"
 
-    clean_pr_CSV(folder_path)
+    #clean_pr_CSV(folder_path)
 
 
 if __name__ == "__main__":
