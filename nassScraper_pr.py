@@ -5,18 +5,16 @@ import csv
 
 
 def main():
-    # API endpoint
     url = "https://quickstats.nass.usda.gov/api/api_GET/"
 
     cropNames = ["BARLEY", "CORN", "OATS", "SOYBEANS"]
     CropsOfInterest = ["BARLEY - PRICE RECEIVED, MEASURED IN $ / BU", "CORN, GRAIN - PRICE RECEIVED, MEASURED IN $ / BU", "OATS - PRICE RECEIVED, MEASURED IN $ / BU", "SOYBEANS - PRICE RECEIVED, MEASURED IN $ / BU" ]
     years = [str(i) for i in range(2000,2023)]
 
-    # for year in years:
     for i in range(0,4):
         # API parameters
         params = {
-            "key": "7EAD1CE2-43DC-349C-BA7D-6AB559C9CDF3",
+            "key": "",
             "source_desc": "SURVEY",
             "sector_desc": "CROPS",
             "short_desc": CropsOfInterest[i],
@@ -28,9 +26,9 @@ def main():
         outputFolderPath = "./opdata2"
 
         response = requests.get(url, params=params)
-        if response.status_code == 200:         # Check if response is successful
-            data = json.loads(response.text)             # Parse JSON response
-            if "data" in data:             # Check if the response contains data
+        if response.status_code == 200:      
+            data = json.loads(response.text)            
+            if "data" in data:            
                 filename = cropNames[i] 
                 csv_path = os.path.join(outputFolderPath, f"{filename}.csv")
                 with open(csv_path, "w", newline = "") as csv_file:
