@@ -9,8 +9,6 @@ import io
 import csv
 
 def main():
-    username = "purdue_chanchani"
-    password = "l836KMM3jj"
     year = 2024
     startdate_ts = str(dt.datetime(year, 1, 1)).replace(" ","T") + "Z"
     enddate_ts =  str(dt.datetime(year, 12, 31)).replace(" ","T") + "Z"
@@ -28,7 +26,7 @@ def main():
         response = requests.get(url)
         if response.status_code == 200:
             content = response.content.decode('utf-8')
-            reader = csv.reader(io.StringIO(content))                         # Check if response is successful
+            reader = csv.reader(io.StringIO(content))                        
             csv_path = f"./meteomatics2/{state}.csv"
             
             with open(csv_path, "w", newline = "") as csv_file:
@@ -40,27 +38,6 @@ def main():
         else:
             print(f"Error: API request failed with status code {response.status_code}")
 
-
-
-
-
-        # year = 2022
-        # start_time = dt(year, 1, 1)
-        # end_time = dt(year, 12)
-        # time_step = ":PT1H"
-        # parameters_ts = ['t_2m:C', 'rr_1h:mm']
-        # loc = (41.664284, -87.486194)
-        # format = "JSON"
-
-
-        # api.query_api()
-        
-        #url = "https://api.meteomatics.com/"
-        #response = requests.get(url, params=params)
-
-
-    # states = ['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO',          'CONNECTICUT', 'DELAWARE', 'FLORIDA', 'GEORGIA', 'HAWAII', 'IDAHO',          'ILLINOIS', 'INDIANA', 'IOWA', 'KANSAS', 'KENTUCKY', 'LOUISIANA',          'MAINE', 'MARYLAND', 'MASSACHUSETTS', 'MICHIGAN', 'MINNESOTA',          'MISSISSIPPI', 'MISSOURI', 'MONTANA', 'NEBRASKA', 'NEVADA',          'NEW HAMPSHIRE', 'NEW JERSEY', 'NEW MEXICO', 'NEW YORK',          'NORTH CAROLINA', 'NORTH DAKOTA', 'OHIO', 'OKLAHOMA', 'OREGON',          'PENNSYLVANIA', 'RHODE ISLAND', 'SOUTH CAROLINA', 'SOUTH DAKOTA',          'TENNESSEE', 'TEXAS', 'UTAH', 'VERMONT', 'VIRGINIA', 'WASHINGTON',          'WEST VIRGINIA', 'WISCONSIN', 'WYOMING']
-   
 
 if __name__ == "__main__":
     main()
