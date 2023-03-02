@@ -3,20 +3,16 @@ import os
 
 
 def cleanCSV(folder_path):
-    # Loop through each file in the directory
     for filename in os.listdir(folder_path):
         if filename.endswith(".csv"):
-            # Read the CSV file into a Pandas DataFrame
             df = pd.read_csv(os.path.join(folder_path, filename))
             
-            # Drop duplicates based on the "state" column and keep the first occurrence
-            df.drop_duplicates(subset=["state"], keep="first", inplace=True)
+            df.drop_duplicates(subset=["state"], keep="first", inplace=True)  #drop duplicates based on state column and keeps first occurrence
+
             df["item"] = df["item"].str.split(n=1).str[0]
             df = df[~df["state"].str.contains("OTHER STATES")]
             df["item"] = df["item"].str.replace(r"[^a-zA-Z]+", "", regex=True)
 
-
-            # Write the updated DataFrame back to the CSV file
             df.to_csv(os.path.join(folder_path, filename), index=False)
 
 
@@ -33,6 +29,8 @@ def func(folder_path):
             df = df.drop(columns = "item")
             df = df.rename(columns={"yield_value": crop_name})
             df.to_csv(os.path.join(op_path, filename), index=False)
+
+    
 
 def func2(folder_path):
     op_path = "./testdata"
